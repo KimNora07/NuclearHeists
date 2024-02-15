@@ -33,6 +33,9 @@ public class AI : MonoBehaviour
 
     void Update()
     {
+        //dir = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
+
+        //rb.velocity = dir * WalkSpeed;
 
 
         SpriteFilp();

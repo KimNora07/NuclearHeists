@@ -30,8 +30,11 @@ public class PointMove : MonoBehaviour
         if (transform.position != point[currentPointIndex].position)
         {
 
-            transform.position = Vector2.MoveTowards(transform.position, point[currentPointIndex].position, speed * Time.deltaTime);
+            //transform.position = Vector2.MoveTowards(transform.position, point[currentPointIndex].position, speed * Time.deltaTime);
 
+            Vector2 dir = (point[currentPointIndex].position - transform.position);
+
+            rb.AddForce(dir * speed, ForceMode2D.Force);
             
         }
         else
@@ -40,6 +43,7 @@ public class PointMove : MonoBehaviour
             {
                 once = true;
                 StartCoroutine(Wait());
+                
             }
             
         }

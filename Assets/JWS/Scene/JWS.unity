@@ -294,11 +294,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 410271880}
-  speed: 1.75
+  speed: 0.5
   point:
   - {fileID: 1564358988}
   - {fileID: 1253890982}
-  waitTime: 0.5
+  waitTime: 0.1
   once: 0
 --- !u!95 &410271877
 Animator:
