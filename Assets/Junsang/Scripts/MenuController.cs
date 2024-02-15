@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,6 +8,8 @@ using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
+    public static MenuController Instance;
+
     [Header("NewLevel")]
     [SerializeField] private string _newGame;
 
@@ -45,6 +48,24 @@ public class MenuController : MonoBehaviour
     [SerializeField] private int _Menuindex = 0;
     [SerializeField] private int _Buttonindex = 0;
     [SerializeField] private int _Sliderindex = -1;
+
+    [Header("Volume Setting")]
+    public float musicVolume;
+    public float sfxVolume;
+
+    private void OnEnable()
+    {
+        musicVolume = 0.5f;
+        sfxVolume = 0.5f;
+    }
+
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+    }
 
     private void Start()
     {
@@ -92,61 +113,115 @@ public class MenuController : MonoBehaviour
 
     public void Menu_StartButton()
     {
-        
+        _Menuindex = 2;
+        _Buttonindex = 2;
+        _Sliderindex = -1;
+        StartCoroutine(WaitForSecond());
     }
 
     public void Menu_OptionButton()
     {
-        
+        _Menuindex = 1;
+        _Buttonindex = 1;
+        _Sliderindex = -1;
+        StartCoroutine(WaitForSecond());
     }
 
     public void Menu_ExitButton()
     {
-
+        _Menuindex = 3;
+        _Buttonindex = 3;
+        _Sliderindex = -1;
+        StartCoroutine(WaitForSecond());
     }
 
     public void StartButton()
     {
         SceneManager.LoadScene(_newGame);
+        StartCoroutine(WaitForSecond());
     }
 
     public void ExitButton()
     {
         Application.Quit();
+        StartCoroutine(WaitForSecond());
     }
 
     public void Option_GraphicButton()
     {
-        
+        _Menuindex = 4;
+        _Buttonindex = -1;
+        _Sliderindex = 0;
+        StartCoroutine(WaitForSecond());
     }
 
     public void Option_SoundButton()
     {
-        
+        _Menuindex = 5;
+        _Buttonindex = -1;
+        _Sliderindex = 1;
+        StartCoroutine(WaitForSecond());
     }
 
     public void FullScreenButton()
     {
-
+        
     }
 
     public void BackToMenuButton()
     {
-
+        _Menuindex = 0;
+        _Buttonindex = 0;
+        _Sliderindex = -1;
+        StartCoroutine(WaitForSecond());
     }
 
     public void BackToOptionButton()
     {
+        if (_Menuindex == 5 && _Buttonindex == -1 && _Sliderindex == 1)
+        {
+            // SoundPanel
+            AudioManager.Instance.musicSlider.value = musicVolume;
+            AudioManager.Instance.sfxSlider.value = sfxVolume;
+        }
+        else if (_Menuindex == 4 && _Buttonindex == -1 && _Sliderindex == 0)
+        {
+            //GraphicPanel
+        }
 
+        _Menuindex = 1;
+        _Buttonindex = 1;
+        _Sliderindex = -1;
+  
+        StartCoroutine(WaitForSecond());
     }
 
     public void DefaultButton()
     {
-
+        if (_Menuindex == 5 && _Buttonindex == -1 && _Sliderindex == 1)
+        {
+            // SoundPanel
+            AudioManager.Instance.musicSlider.value = 0.5f;
+            AudioManager.Instance.sfxSlider.value = 0.5f;
+        }
+        else if (_Menuindex == 4 && _Buttonindex == -1 && _Sliderindex == 0)
+        {
+            //GraphicPanel
+        }
     }
 
     public void ApplyButton()
     {
-
+        if(_Menuindex == 5 && _Buttonindex == -1 && _Sliderindex == 1)
+        {
+            // SoundPanel
+            AudioManager.Instance.SetMusicVolume(AudioManager.Instance.musicSlider.value);
+            AudioManager.Instance.SetSFXVolume(AudioManager.Instance.sfxSlider.value);
+        }
+        else if(_Menuindex ==  4 && _Buttonindex == -1 && _Sliderindex == 0)
+        {
+            //GraphicPanel
+        }
     }
+
 }

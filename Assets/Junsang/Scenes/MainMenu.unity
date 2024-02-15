@@ -2568,8 +2568,8 @@ RectTransform:
   m_Children:
   - {fileID: 1299386592}
   - {fileID: 1926000980}
-  - {fileID: 658519666}
   - {fileID: 341367529}
+  - {fileID: 658519666}
   - {fileID: 586045682}
   - {fileID: 1053952899}
   m_Father: {fileID: 1167509152}
@@ -3009,7 +3009,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &586045682
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3683,7 +3683,7 @@ RectTransform:
   m_Father: {fileID: 1289743446}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5670,7 +5670,7 @@ RectTransform:
   m_Father: {fileID: 1032123381}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6650,12 +6650,12 @@ GameObject:
   - component: {fileID: 1299386594}
   - component: {fileID: 1299386593}
   m_Layer: 5
-  m_Name: BackGround_UI
+  m_Name: MenuPanel_UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1299386592
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7364,6 +7364,80 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1401251320}
   m_CullTransparentMesh: 1
+--- !u!1 &1439003740
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1439003742}
+  - component: {fileID: 1439003741}
+  m_Layer: 0
+  m_Name: MenuManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1439003741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439003740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3db2c5312951494baa280b538b3e887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _newGame: 
+  menu_StartButton: {fileID: 0}
+  menu_OptionButton: {fileID: 0}
+  menu_ExitButton: {fileID: 0}
+  option_GraphicButton: {fileID: 0}
+  option_SoundButton: {fileID: 0}
+  option_BackButton: {fileID: 0}
+  start_YesButton: {fileID: 0}
+  start_NoButton: {fileID: 0}
+  Exit_YesButton: {fileID: 0}
+  Exit_NoButton: {fileID: 0}
+  Graphic_FullScreenButton: {fileID: 0}
+  Graphic_DefaultButton: {fileID: 0}
+  Graphic_BackButton: {fileID: 0}
+  Graphic_ApplyButton: {fileID: 0}
+  Sound_DefaultButton: {fileID: 0}
+  Sound_BackButton: {fileID: 0}
+  Sound_ApplyButton: {fileID: 0}
+  menu_Panel: {fileID: 0}
+  option_Panel: {fileID: 0}
+  exit_Panel: {fileID: 0}
+  start_Panel: {fileID: 0}
+  sound_Panel: {fileID: 0}
+  graphic_Panel: {fileID: 0}
+  _menuList: []
+  _firstSelectButton: []
+  _firstSelectSlider: []
+  _Menuindex: 0
+  _Buttonindex: 0
+  _Sliderindex: -1
+--- !u!4 &1439003742
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439003740}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 618.4765, y: 556.35675, z: 3.5855956}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1461253504
 GameObject:
   m_ObjectHideFlags: 0
@@ -8999,7 +9073,7 @@ GameObject:
   - component: {fileID: 1926000982}
   - component: {fileID: 1926000981}
   m_Layer: 5
-  m_Name: OptionGround_UI
+  m_Name: OptionPanel_UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10199,3 +10273,4 @@ SceneRoots:
   - {fileID: 1297441550}
   - {fileID: 1167509152}
   - {fileID: 1218922835}
+  - {fileID: 1439003742}
