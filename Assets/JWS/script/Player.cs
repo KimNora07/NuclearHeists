@@ -5,26 +5,10 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public Rigidbody2D rb;
-
-    public SpriteRenderer Renderer;
-
-    public List<Sprite> nSprites;
-
-    public List<Sprite> neSprites;
-
-    public List<Sprite> eSprites;
-
-    public List<Sprite> seSprites;
-
-    public List<Sprite> sSprites;
-
-    public float WalkSpeed;
-
-    public float FrameRate;
-
-    float IdleTime;
-
-    Vector2 dir;
+    public float moveSpeed;
+    public Animator anim;
+    private Vector2 movedir;
+    private Vector2 lastmovedir;
 
     void Start()
     {
@@ -33,81 +17,43 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        dir = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
-
-        rb.velocity = dir * WalkSpeed;
-
-
-        SpriteFilp();
-
-        SetSprite();
-
-
+        MakeDir();
+        Anim();
     }
-    void SetSprite()
+
+    private void FixedUpdate()
     {
-        List<Sprite> dirSprite = GetSpriteDir();
-
-        if (dirSprite != null)
-        {
-            float PlayTime = Time.time - IdleTime;
-            int TotalFrame = (int)(PlayTime * FrameRate);
-            int Frame = TotalFrame % dirSprite.Count;
-
-            Renderer.sprite = dirSprite[Frame];
-        }
-        else
-        {
-            IdleTime = Time.time;
-        }
+        
+        Move();
     }
 
-    void SpriteFilp()
+    void MakeDir()
     {
-        if (!Renderer.flipX && dir.x < 0)
+        float x = Input.GetAxis("Horizontal");
+        float y = Input.GetAxis("Vertical");
+
+        if((x == 0 && y == 0) && movedir.x != 0 || movedir.y != 0)
         {
-            Renderer.flipX = true;
+            lastmovedir = movedir;
         }
-        else if (Renderer.flipX && dir.x > 0)
-        {
-            Renderer.flipX = false;
-        }
+
+        movedir = new Vector2(x, y).normalized;
     }
 
-    List<Sprite> GetSpriteDir()
+    void Move()
     {
-        List<Sprite> selectsprite = null;
+        //rb.velocity = new Vector2(movedir.x * moveSpeed, movedir.y * moveSpeed);
 
-        if (dir.y > 0)
-        {
-            if(Mathf.Abs(dir.x) > 0)
-            {
-                selectsprite = neSprites;
-            }
-            else
-            {
-                selectsprite = nSprites;
-            }
-        }
-        else if(dir.y < 0)
-        {
-            if (Mathf.Abs(dir.x) > 0)
-            {
-                selectsprite = seSprites;
-            }
-            else
-            {
-                selectsprite = sSprites;
-            }
-        }
-        else
-        {
-            if (Mathf.Abs(dir.x) > 0)
-            {
-                selectsprite = eSprites;
-            }
-        }
-
-        return selectsprite;
+        rb.velocity = movedir * moveSpeed;
     }
+
+    void Anim()
+    {
+        anim.SetFloat("X", movedir.x);
+        anim.SetFloat("Y", movedir.y);
+        anim.SetFloat("Move", movedir.magnitude);
+        anim.SetFloat("lastMX", lastmovedir.x);
+        anim.SetFloat("lastMY", lastmovedir.y);
+    }
+
 }
