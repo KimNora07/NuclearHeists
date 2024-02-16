@@ -616,6 +616,7 @@ MonoBehaviour:
   AnglePos: {fileID: 1113165052}
   Mark1: {fileID: 2000552246}
   Mark2: {fileID: 1325347934}
+  chaseTime: 0.8
 --- !u!1 &557044208
 GameObject:
   m_ObjectHideFlags: 0
@@ -12310,6 +12311,7 @@ MonoBehaviour:
   AnglePos: {fileID: 1676499724}
   Mark1: {fileID: 337036139}
   Mark2: {fileID: 1600951364}
+  chaseTime: 0
 --- !u!50 &1735163516
 Rigidbody2D:
   serializedVersion: 4
