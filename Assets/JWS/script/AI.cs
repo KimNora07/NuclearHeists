@@ -23,8 +23,11 @@ public class AI : MonoBehaviour
     
     public GameObject AnglePos;
 
+    public GameObject Mark1;
+    public GameObject Mark2;
 
-    
+
+
 
     void Start()
     {
@@ -50,6 +53,9 @@ public class AI : MonoBehaviour
         if(chase == true)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+
+            Mark1.SetActive(true);
+            Mark2.SetActive(false);
         }
         if(chase == false)
         {
@@ -131,10 +137,14 @@ public class AI : MonoBehaviour
             {
                 Debug.DrawRay(transform.position, player.transform.position - transform.position, Color.green);
                 time += Time.deltaTime;
+                Mark1.SetActive(false);
+                Mark2.SetActive(true);
                 if (time >= 1.5f && chase == false)
                 {
                     time = 0;
                     chase = true;
+                    Mark1.SetActive(true);
+                    Mark2.SetActive(false);
                 }
 
 
@@ -145,6 +155,9 @@ public class AI : MonoBehaviour
                 chase = false;
                 time = 0;
                 OnAngle = false;
+                Mark1.SetActive(false);
+                Mark2.SetActive(false);
+
 
             }
         }
@@ -176,28 +189,28 @@ public class AI : MonoBehaviour
         }
 
 
-        //if (dir.x > 0 || dir.y != 0)
-        //{
-        //    AnglePos.transform.rotation = Quaternion.Euler(0, 0, 180);
-        //}
+        if (dir.x >= 0.1 && dir.y >= 0.1)
+        {
+            AnglePos.transform.rotation = Quaternion.Euler(0, 0, 135);
+        }
 
 
-        //if (dir.x > 0 || dir.y != 0)
-        //{
-        //    AnglePos.transform.rotation = Quaternion.Euler(0, 0, 180);
-        //}
+        if (dir.x >= 0.1 && dir.y <= -0.1)
+        {
+            AnglePos.transform.rotation = Quaternion.Euler(0, 0, 45);
+        }
 
 
-        //if (dir.x > 0 || dir.y != 0)
-        //{
-        //    AnglePos.transform.rotation = Quaternion.Euler(0, 0, 180);
-        //}
+        if (dir.x <= -0.1 && dir.y <= -0.1)
+        {
+            AnglePos.transform.rotation = Quaternion.Euler(0, 0, -45);
+        }
 
 
-        //if (dir.x > 0 || dir.y != 0)
-        //{
-        //    AnglePos.transform.rotation = Quaternion.Euler(0, 0, 180);
-        //}
+        if (dir.x <= -0.1 && dir.y >= 0.1)
+        {
+            AnglePos.transform.rotation = Quaternion.Euler(0, 0, -135);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
