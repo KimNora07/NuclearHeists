@@ -24,7 +24,6 @@ public class MenuController : MonoBehaviour
     [SerializeField] private Button start_NoButton;
     [SerializeField] private Button Exit_YesButton;
     [SerializeField] private Button Exit_NoButton;
-    [SerializeField] private Button Graphic_FullScreenButton;
     [SerializeField] private Button Graphic_DefaultButton;
     [SerializeField] private Button Graphic_BackButton;
     [SerializeField] private Button Graphic_ApplyButton;
@@ -41,17 +40,28 @@ public class MenuController : MonoBehaviour
     [SerializeField] private GameObject graphic_Panel;
 
 
-    [Header("SelectObject")]
+    [Header("SelectObjects")]
     [SerializeField] private GameObject[] _menuList;
     [SerializeField] private Button[] _firstSelectButton;
     [SerializeField] private Slider[] _firstSelectSlider;
+    [SerializeField] private TMP_Dropdown[] _firstSelectDropdown;
     [SerializeField] private int _Menuindex = 0;
     [SerializeField] private int _Buttonindex = 0;
     [SerializeField] private int _Sliderindex = -1;
+    [SerializeField] private int _Dropdownindex = -1;
 
-    [Header("Volume Setting")]
+    [Header("Volume Settings")]
     public float musicVolume;
     public float sfxVolume;
+
+    [Header("Graphic Settings")]
+    [SerializeField] private TMP_Dropdown qualityDropdown;
+    [SerializeField] private Toggle fullScrrenToggle;
+    public TMP_Dropdown resolutionDropdown;
+    private Resolution[] resolutions;
+
+    private int _qualityLevel;
+    private bool _isFullScreen;
 
     private void OnEnable()
     {
@@ -79,7 +89,6 @@ public class MenuController : MonoBehaviour
         start_NoButton.onClick.AddListener(BackToMenuButton);
         Exit_YesButton.onClick.AddListener(ExitButton);
         Exit_NoButton.onClick.AddListener(BackToMenuButton);
-        Graphic_FullScreenButton.onClick.AddListener(FullScreenButton);
         Graphic_DefaultButton.onClick.AddListener(DefaultButton);
         Graphic_BackButton.onClick.AddListener(BackToOptionButton);
         Graphic_ApplyButton.onClick.AddListener(ApplyButton);
@@ -87,10 +96,30 @@ public class MenuController : MonoBehaviour
         Sound_BackButton.onClick.AddListener(BackToOptionButton);
         Sound_ApplyButton.onClick.AddListener(ApplyButton);
 
-        SelectedMenu(_Menuindex, _Buttonindex, _Sliderindex);
+        resolutions = Screen.resolutions;
+        resolutionDropdown.ClearOptions();
+
+        List<string> options = new List<string>();
+
+        int currentResolutionIndex = 0;
+
+        for(int i = 0; i  < resolutions.Length; i++)
+        {
+            string option = resolutions[i].width + " x " + resolutions[i].height;
+            options.Add(option);
+
+            if (resolutions[i].width == Screen.width && resolutions[i].height == Screen.height)
+            {
+                currentResolutionIndex = i;
+            }
+        }
+
+        resolutionDropdown.AddOptions(options);
+
+        SelectedMenu(_Menuindex, _Buttonindex, _Sliderindex, _Dropdownindex);
     }
 
-    public void SelectedMenu(int MenuIndex, int ButtonIndex, int SliderIndex)
+    public void SelectedMenu(int MenuIndex, int ButtonIndex, int SliderIndex, int DropdownIndex)
     {
         foreach (GameObject menu in _menuList)
         {
@@ -103,12 +132,17 @@ public class MenuController : MonoBehaviour
         {
             _firstSelectSlider[SliderIndex].Select();
         }
+        if(_Dropdownindex >= 0)
+        {
+            _firstSelectDropdown[DropdownIndex].Select();
+        }
     }
 
     IEnumerator WaitForSecond()
     {
-        yield return new WaitForSeconds(.3f);
-        SelectedMenu(_Menuindex, _Buttonindex, _Sliderindex);
+        AudioManager.Instance.PlaySFX("ButtonClick");
+        yield return null;
+        SelectedMenu(_Menuindex, _Buttonindex, _Sliderindex, _Dropdownindex);
     }
 
     public void Menu_StartButton()
@@ -116,6 +150,7 @@ public class MenuController : MonoBehaviour
         _Menuindex = 2;
         _Buttonindex = 2;
         _Sliderindex = -1;
+        _Dropdownindex = -1;
         StartCoroutine(WaitForSecond());
     }
 
@@ -124,6 +159,7 @@ public class MenuController : MonoBehaviour
         _Menuindex = 1;
         _Buttonindex = 1;
         _Sliderindex = -1;
+        _Dropdownindex = -1;
         StartCoroutine(WaitForSecond());
     }
 
@@ -132,6 +168,7 @@ public class MenuController : MonoBehaviour
         _Menuindex = 3;
         _Buttonindex = 3;
         _Sliderindex = -1;
+        _Dropdownindex = -1;
         StartCoroutine(WaitForSecond());
     }
 
@@ -151,7 +188,8 @@ public class MenuController : MonoBehaviour
     {
         _Menuindex = 4;
         _Buttonindex = -1;
-        _Sliderindex = 0;
+        _Sliderindex = -1;
+        _Dropdownindex = 0;
         StartCoroutine(WaitForSecond());
     }
 
@@ -159,13 +197,14 @@ public class MenuController : MonoBehaviour
     {
         _Menuindex = 5;
         _Buttonindex = -1;
-        _Sliderindex = 1;
+        _Sliderindex = 0;
+        _Dropdownindex = -1;
         StartCoroutine(WaitForSecond());
     }
 
-    public void FullScreenButton()
+    public void FullScreenButton(bool isFullScreen)
     {
-        
+        _isFullScreen = isFullScreen;
     }
 
     public void BackToMenuButton()
@@ -173,55 +212,87 @@ public class MenuController : MonoBehaviour
         _Menuindex = 0;
         _Buttonindex = 0;
         _Sliderindex = -1;
+        _Dropdownindex = -1;
         StartCoroutine(WaitForSecond());
     }
 
     public void BackToOptionButton()
     {
-        if (_Menuindex == 5 && _Buttonindex == -1 && _Sliderindex == 1)
+        if (_Menuindex == 5 && _Buttonindex == -1 && _Sliderindex == 0 && _Dropdownindex == -1)
         {
             // SoundPanel
             AudioManager.Instance.musicSlider.value = musicVolume;
             AudioManager.Instance.sfxSlider.value = sfxVolume;
         }
-        else if (_Menuindex == 4 && _Buttonindex == -1 && _Sliderindex == 0)
+        else if (_Menuindex == 4 && _Buttonindex == -1 && _Sliderindex == -1 && _Dropdownindex == 0)
         {
             //GraphicPanel
+            //resolutionDropDown
+            //qualityDropDown
+            //fullScreenToggle
         }
 
         _Menuindex = 1;
         _Buttonindex = 1;
         _Sliderindex = -1;
-  
+        _Dropdownindex = -1;
+
         StartCoroutine(WaitForSecond());
     }
 
     public void DefaultButton()
     {
-        if (_Menuindex == 5 && _Buttonindex == -1 && _Sliderindex == 1)
+        if (_Menuindex == 5 && _Buttonindex == -1 && _Sliderindex == 0 && _Dropdownindex == -1)
         {
             // SoundPanel
             AudioManager.Instance.musicSlider.value = 0.5f;
             AudioManager.Instance.sfxSlider.value = 0.5f;
         }
-        else if (_Menuindex == 4 && _Buttonindex == -1 && _Sliderindex == 0)
+        else if (_Menuindex == 4 && _Buttonindex == -1 && _Sliderindex == -1 && _Dropdownindex == 0)
         {
             //GraphicPanel
+
+            qualityDropdown.value = 1;
+            QualitySettings.SetQualityLevel(1);
+
+            fullScrrenToggle.isOn = false;
+            Screen.fullScreen = false;
+
+            Resolution currentResolution = Screen.currentResolution;
+            Screen.SetResolution(currentResolution.width, currentResolution.height, Screen.fullScreen);
+            resolutionDropdown.value = resolutions.Length;
         }
     }
 
     public void ApplyButton()
     {
-        if(_Menuindex == 5 && _Buttonindex == -1 && _Sliderindex == 1)
+        if (_Menuindex == 5 && _Buttonindex == -1 && _Sliderindex == 0 && _Dropdownindex == -1)
         {
             // SoundPanel
             AudioManager.Instance.SetMusicVolume(AudioManager.Instance.musicSlider.value);
             AudioManager.Instance.SetSFXVolume(AudioManager.Instance.sfxSlider.value);
         }
-        else if(_Menuindex ==  4 && _Buttonindex == -1 && _Sliderindex == 0)
+        else if(_Menuindex == 4 && _Buttonindex == -1 && _Sliderindex == -1 && _Dropdownindex == 0)
         {
             //GraphicPanel
+
+            PlayerPrefs.SetInt("masterQuality", _qualityLevel);
+            QualitySettings.SetQualityLevel(_qualityLevel);
+
+            PlayerPrefs.SetInt("masterFullScreen", (_isFullScreen ? 1 : 0));
+            Screen.fullScreen = _isFullScreen;
         }
+    }
+
+    public void SetQuality(int qualityIndex)
+    {
+        _qualityLevel = qualityIndex;
+    }
+
+    public void SetResolution(int resolutionIndex)
+    {
+        Resolution resolution = resolutions[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
 }
