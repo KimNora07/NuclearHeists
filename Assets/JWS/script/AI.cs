@@ -11,6 +11,7 @@ public class AI : MonoBehaviour
     public float waitTime;
     int currentPointIndex;
     Vector2 dir;
+    Vector2 Movedir;
     private Vector2 Lastdir;
     public bool once;
 
@@ -26,7 +27,7 @@ public class AI : MonoBehaviour
     public GameObject Mark1;
     public GameObject Mark2;
 
-
+    public float chaseTime;
 
 
     void Start()
@@ -39,6 +40,10 @@ public class AI : MonoBehaviour
         if(OnAngle == true)
         {
             MakeRay();
+        }
+        else
+        {
+            Mark2.SetActive(false);
         }
 
     }
@@ -107,16 +112,13 @@ public class AI : MonoBehaviour
         {
             Lastdir = dir;
         }
+
     }
 
     void MakeDirToPlayer()
     {
         dir = ((Vector2)player.transform.position - (Vector2)transform.position).normalized;
 
-        if(dir.x != 0 || dir.y != 0)
-        {
-            Lastdir = dir;
-        }
     }
 
     void Anim()
@@ -139,7 +141,7 @@ public class AI : MonoBehaviour
                 time += Time.deltaTime;
                 Mark1.SetActive(false);
                 Mark2.SetActive(true);
-                if (time >= 1.5f && chase == false)
+                if (time >= chaseTime && chase == false)
                 {
                     time = 0;
                     chase = true;
@@ -218,6 +220,14 @@ public class AI : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             OnAngle = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            OnAngle = false;
+            
         }
     }
 }
