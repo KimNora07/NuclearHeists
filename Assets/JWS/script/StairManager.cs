@@ -29,15 +29,20 @@ public class StairManager : MonoBehaviour
             switch (point)
             {
                 case 0:
-                    col.transform.position = new Vector3(-7, 25, 0);
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        col.transform.position = new Vector3(-7, 25, 0);
+                    }
                     break;
+
                 case 1:
-                    col.transform.position = new Vector3(-4, 0, 0);
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        col.transform.position = new Vector3(-4, 0, 0);
+                    }
                     break;
             }
             
-
-            Debug.Log("´ÝÀ½");
         }
 
     }
