@@ -34,13 +34,12 @@ public class AudioManager : MonoBehaviour
         if(Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
-    }
-
-    private void Start()
-    {
-        musicSlider.value = MenuController.Instance.musicVolume;
-        sfxSlider.value = MenuController.Instance.sfxVolume;
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void SetMusicVolume(float value)

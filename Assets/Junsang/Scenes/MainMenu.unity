@@ -3445,6 +3445,12 @@ MonoBehaviour:
   sfxSound:
   - name: ButtonClick
     clip: {fileID: 8300000, guid: f35f0268038cb7e4e9fb2fe051b4d618, type: 3}
+  - name: KeyPadClick
+    clip: {fileID: 8300000, guid: 9a6c9b770cd78ba428f09bb7c7ee5e78, type: 3}
+  - name: ConfirmClick
+    clip: {fileID: 8300000, guid: 9863ee4d80e3e324bae45baa89aaff7d, type: 3}
+  - name: ErrorClick
+    clip: {fileID: 8300000, guid: e5d67d2f11a861148823decd1d25e57b, type: 3}
   musicSource: {fileID: 415966631}
   sfxSource: {fileID: 1329801040}
   mixer: {fileID: 24100000, guid: 61c5227a63cda2646852e83eab7fdea2, type: 2}
@@ -5001,8 +5007,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46bff2bae0577a54498b2115d3a77d4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Img: {fileID: 0}
-  FadedelayInSeconds: 0
+  Img: {fileID: 355377669}
+  FadedelayInSeconds: 1.2
 --- !u!114 &1053952905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5015,8 +5021,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46bff2bae0577a54498b2115d3a77d4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Img: {fileID: 0}
-  FadedelayInSeconds: 0
+  Img: {fileID: 2045503132}
+  FadedelayInSeconds: 1.2
 --- !u!114 &1053952906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5029,8 +5035,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46bff2bae0577a54498b2115d3a77d4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Img: {fileID: 0}
-  FadedelayInSeconds: 0
+  Img: {fileID: 960068851}
+  FadedelayInSeconds: 0.9
 --- !u!114 &1053952907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5043,8 +5049,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46bff2bae0577a54498b2115d3a77d4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Img: {fileID: 0}
-  FadedelayInSeconds: 0
+  Img: {fileID: 1330927856}
+  FadedelayInSeconds: 0.9
 --- !u!114 &1053952908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5058,7 +5064,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 856359678}
-  FadedelayInSeconds: 0
+  FadedelayInSeconds: 1.2
 --- !u!114 &1053952909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7158,7 +7164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3db2c5312951494baa280b538b3e887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _newGame: 
+  _newGame: Test
   menu_StartButton: {fileID: 2010058910}
   menu_OptionButton: {fileID: 576597147}
   menu_ExitButton: {fileID: 125247573}
@@ -7193,8 +7199,10 @@ MonoBehaviour:
   _Menuindex: 0
   _Buttonindex: 0
   _Sliderindex: -1
-  musicVolume: 0
-  sfxVolume: 0
+  musicSlider: {fileID: 1002078507}
+  sfxSlider: {fileID: 856359678}
+  musicVolume: 0.5
+  sfxVolume: 0.5
   saveTxt:
   - {fileID: 307651645}
 --- !u!4 &1439003742

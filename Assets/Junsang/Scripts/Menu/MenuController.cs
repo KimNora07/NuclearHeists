@@ -51,6 +51,8 @@ public class MenuController : MonoBehaviour
     //[SerializeField] private int _Dropdownindex = -1;
 
     [Header("Volume Settings")]
+    [SerializeField] Slider musicSlider;
+    [SerializeField] Slider sfxSlider;
     public float musicVolume;
     public float sfxVolume;
 
@@ -86,6 +88,9 @@ public class MenuController : MonoBehaviour
 
     private void Start()
     {
+        musicSlider.value = musicVolume;
+        sfxSlider.value = sfxVolume;
+
         menu_StartButton.onClick.AddListener(Menu_StartButton);
         menu_OptionButton.onClick.AddListener(Menu_OptionButton);
         menu_ExitButton.onClick.AddListener(Menu_ExitButton);

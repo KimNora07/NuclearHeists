@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Junsang/Scenes/MainMenu.unity
     guid: 4c1c7c6be3405eb40b0666dbe8c1cf53
+  - enabled: 1
+    path: Assets/Junsang/Scenes/Test.unity
+    guid: 54246934f39c00849bb055e6aa7908e8
   m_configObjects: {}
