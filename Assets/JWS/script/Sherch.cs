@@ -18,7 +18,7 @@ public class Sherch : MonoBehaviour
 
     void Start()
     {
-
+        col = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
