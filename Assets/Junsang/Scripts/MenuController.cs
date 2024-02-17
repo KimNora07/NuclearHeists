@@ -71,8 +71,9 @@ public class MenuController : MonoBehaviour
 
     private void OnEnable()
     {
-        musicVolume = 0.5f;
-        sfxVolume = 0.5f;
+        AudioManager.Instance.PlaySFX("ButtonClick");
+        musicVolume = 1f;
+        sfxVolume = 1f;
     }
 
     private void Awake()
@@ -190,13 +191,13 @@ public class MenuController : MonoBehaviour
     public void StartButton()
     {
         SceneManager.LoadScene(_newGame);
-        StartCoroutine(WaitForSecond());
+        AudioManager.Instance.PlaySFX("ButtonClick");
     }
 
     public void ExitButton()
     {
         Application.Quit();
-        StartCoroutine(WaitForSecond());
+        AudioManager.Instance.PlaySFX("ButtonClick");
     }
 
     //public void Option_GraphicButton()
