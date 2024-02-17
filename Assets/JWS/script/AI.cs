@@ -58,12 +58,13 @@ public class AI : MonoBehaviour
         if(chase == true)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
-
+            MakeRay();
             Mark1.SetActive(true);
             Mark2.SetActive(false);
         }
         if(chase == false)
         {
+            
             MakeDir();
 
             if (transform.position != point[currentPointIndex].position)
@@ -215,7 +216,7 @@ public class AI : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
@@ -227,7 +228,7 @@ public class AI : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             OnAngle = false;
-            
+            Mark1.SetActive(false);
         }
     }
 }
