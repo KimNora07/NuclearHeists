@@ -4,42 +4,43 @@ using UnityEngine;
 
 public class StairManager : MonoBehaviour
 {
-    public LayerMask overLayer;
-    public float r = 1.0f;
+    public GameObject player;
+    //public Collider2D col;
 
-    public Transform[] StairPoints;
-    void Start()
+    public float x;
+    public float y;
+    public bool OnCol = false;
+
+    public GameObject Key;
+
+    private void Start()
     {
-        
+        //col = GetComponent<Collider2D>();
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        StairF(0);
-        StairF(1);
-    }
-
-    void StairF(int point)
-    {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(StairPoints[point].position, r, overLayer);
-
-        foreach(Collider2D col in colliders)
+        if (Input.GetKeyDown(KeyCode.E) && OnCol == true)
         {
-            switch (point)
-            {
-                case 0:
-                    col.transform.position = new Vector3(-7, 25, 0);
-                    break;
-                case 1:
-                    col.transform.position = new Vector3(-4, 0, 0);
-                    break;
-            }
-            
+            player.transform.position = new Vector3(x, y, 0);
+            Debug.Log("¿Ãµø");
+        }
+    }
 
-            Debug.Log("¥›¿Ω");
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            OnCol = true;
+            Key.SetActive(true);
         }
 
+
     }
-    
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Key.SetActive(false);
+        OnCol = false;
+    }
 }
+
