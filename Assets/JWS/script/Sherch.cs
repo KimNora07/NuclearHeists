@@ -18,7 +18,7 @@ public class Sherch : MonoBehaviour
 
     void Start()
     {
-        col = GetComponent<Collider2D>();
+        //col = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
@@ -57,5 +57,6 @@ public class Sherch : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         Key.SetActive(false);
+        OnCol = false;
     }
 }
