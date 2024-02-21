@@ -11,7 +11,6 @@ public class AI : MonoBehaviour
     public float waitTime;
     int currentPointIndex;
     Vector2 dir;
-    Vector2 Movedir;
     private Vector2 Lastdir;
     public bool once;
 
@@ -50,7 +49,7 @@ public class AI : MonoBehaviour
 
     void Update()
     {
-        checkAngle();
+        CheckAngle();
         
         Anim();
         MakeDirToPlayer();
@@ -166,7 +165,7 @@ public class AI : MonoBehaviour
         }
     }
 
-    void checkAngle()
+    void CheckAngle()
     {
         if (dir.y >= 0.9)
         {

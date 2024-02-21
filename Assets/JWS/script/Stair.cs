@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StairManager : MonoBehaviour
+public class Stair : MonoBehaviour
 {
     public GameObject player;
     //public Collider2D col;

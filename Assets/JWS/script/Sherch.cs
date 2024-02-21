@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class Sherch : MonoBehaviour
 {
-    
-
     public float SherchTime;
     public float FindTime = 2;
     public bool Find = false;
     public bool Once = false;
     public bool OnCol = false;
-
-
     public Collider2D col;
     public GameObject Key;
 
@@ -20,8 +16,6 @@ public class Sherch : MonoBehaviour
     {
         //col = GetComponent<Collider2D>();
     }
-
-    // Update is called once per frame
     void Update()
     {
 
@@ -32,7 +26,6 @@ public class Sherch : MonoBehaviour
             {
                 Find = true;
                 Once = true;
-
                 col.enabled = false;
                 Debug.Log("Ã£À½");
             }

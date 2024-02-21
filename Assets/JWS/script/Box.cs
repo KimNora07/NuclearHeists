@@ -20,6 +20,8 @@ public class Box : MonoBehaviour
 
     public Animator anim;
 
+    public string ContainItem;
+
     void Start()
     {
         //col = GetComponent<Collider2D>();
@@ -34,7 +36,7 @@ public class Box : MonoBehaviour
             SherchTime += Time.deltaTime;
             if (SherchTime >= FindTime)
             {
-                Find = true;
+                
                 Once = true;
                 IsOpen = true;
                 Key.SetActive(false);
@@ -42,10 +44,46 @@ public class Box : MonoBehaviour
                 anim.SetBool("Open", true);
             }
         }
-        else if(Input.GetKeyDown(KeyCode.E) && IsOpen == true)
+        else if(Input.GetKeyDown(KeyCode.E) && IsOpen == true && Find == false)
         {
-            col.enabled = false;
-            Debug.Log("찾음");
+            switch (ContainItem)
+            {
+                case "RedKeyCard":
+                    {
+                        GameManager.Instance.KeyCardRed();
+                        Find = true;
+                        col.enabled = false;
+                        Debug.Log("빨간키카드 찾음");
+                        break;
+                    }
+                case "BlueKeyCard":
+                    {
+                        GameManager.Instance.KeyCardBlue();
+                        Find = true;
+                        col.enabled = false;
+                        Debug.Log("파랑키카드 찾음");
+                        break;
+                    }
+                case "GreenKeyCard":
+                    {
+                        GameManager.Instance.KeyCardGreen();
+                        Find = true;
+                        col.enabled = false;
+                        Debug.Log("초록키카드 찾음");
+                        break;
+                    }
+                case "YellowKeyCard":
+                    {
+                        GameManager.Instance.KeyCardYellow();
+                        Find = true;
+                        col.enabled = false;
+                        Debug.Log("노란키카드 찾음");
+                        break;
+                    }
+            }
+            //Find = true;
+            //col.enabled = false;
+            //Debug.Log("찾음");
         }
         else
         {

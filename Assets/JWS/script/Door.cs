@@ -34,12 +34,15 @@ public class Door : MonoBehaviour
         {
             if (!IsCo)
             {
+                Time.timeScale = 0f;
                 keyPad.SetActive(true);
             }
         }
 
         if(OnCol && IsCo)
         {
+            Time.timeScale = 1f;
+
             keyPad.SetActive(false);
             anim.SetTrigger("Open");
             col2.enabled = false;
