@@ -26,20 +26,21 @@ public class KeyPad : MonoBehaviour
     {
         if(Nr == code)
         {
-            AudioManager.Instance.PlaySFX("ConfirmClick");
+            Door.Instance.IsCo = true;
             Debug.Log("일치합니다");
+            AudioManager.Instance.PlaySFX("ConfirmClick");
         }
         else
         {
-            AudioManager.Instance.PlaySFX("ErrorClick");
             Debug.Log("불일치합니다");
+            AudioManager.Instance.PlaySFX("ErrorClick");
         }
     }
 
     public void CancleFunc()
     {
-        AudioManager.Instance.PlaySFX("KeyPadClick");
         Nr = null;
         Debug.Log($"초기화: {Nr}");
+        AudioManager.Instance.PlaySFX("KeyPadClick");
     }
 }
