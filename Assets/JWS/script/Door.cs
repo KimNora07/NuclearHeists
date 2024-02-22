@@ -53,7 +53,6 @@ public class Door : MonoBehaviour
     void open()
     {
         col.enabled = false;
-        Debug.Log("¿­¸²");
     }
 
     private void OnTriggerStay2D(Collider2D collision)

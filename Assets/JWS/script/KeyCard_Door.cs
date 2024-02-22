@@ -36,7 +36,7 @@ public class KeyCard_Door : MonoBehaviour
                         col2.enabled = false;
                         anim.SetTrigger("Open");
                         IsOpen = true;
-                        GameManager.Instance.Keys[0].SetActive(true);
+                        GameManager.Instance.Keys[0].SetActive(false);
                     }
                     break;
                 }
@@ -48,7 +48,7 @@ public class KeyCard_Door : MonoBehaviour
                         col2.enabled = false;
                         anim.SetTrigger("Open");
                         IsOpen = true;
-                        GameManager.Instance.Keys[1].SetActive(true);
+                        GameManager.Instance.Keys[1].SetActive(false);
                     }
                     break;
                 }
@@ -60,7 +60,7 @@ public class KeyCard_Door : MonoBehaviour
                         col2.enabled = false;
                         anim.SetTrigger("Open");
                         IsOpen = true;
-                        GameManager.Instance.Keys[2].SetActive(true);
+                        GameManager.Instance.Keys[2].SetActive(false);
 
                     }
                     break;
@@ -73,7 +73,7 @@ public class KeyCard_Door : MonoBehaviour
                         col2.enabled = false;
                         anim.SetTrigger("Open");
                         IsOpen = true;
-                        GameManager.Instance.Keys[3].SetActive(true);
+                        GameManager.Instance.Keys[3].SetActive(false);
 
                     }
                     break;
@@ -84,8 +84,6 @@ public class KeyCard_Door : MonoBehaviour
     void open()
     {
         col.enabled = false;
-        
-        Debug.Log("¿­¸²");
     }
 
     private void OnTriggerStay2D(Collider2D collision)

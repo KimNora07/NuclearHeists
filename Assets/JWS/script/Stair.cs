@@ -19,7 +19,6 @@ public class Stair : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && OnCol == true)
         {
             player.transform.position = new Vector3(x, y, 0);
-            Debug.Log("¿Ãµø");
         }
     }
 

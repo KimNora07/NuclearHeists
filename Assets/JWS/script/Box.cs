@@ -58,7 +58,6 @@ public class Box : MonoBehaviour
                         GameManager.Instance.KeyCardBlue();
                         Find = true;
                         col.enabled = false;
-                        Debug.Log("파랑키카드 찾음");
                         break;
                     }
                 case "GreenKeyCard":
@@ -66,7 +65,6 @@ public class Box : MonoBehaviour
                         GameManager.Instance.KeyCardGreen();
                         Find = true;
                         col.enabled = false;
-                        Debug.Log("초록키카드 찾음");
                         break;
                     }
                 case "YellowKeyCard":
@@ -74,7 +72,6 @@ public class Box : MonoBehaviour
                         GameManager.Instance.KeyCardYellow();
                         Find = true;
                         col.enabled = false;
-                        Debug.Log("노란키카드 찾음");
                         break;
                     }
             }
