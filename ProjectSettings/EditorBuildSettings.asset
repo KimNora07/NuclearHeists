@@ -6,12 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/JWS/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
     path: Assets/Junsang/Scenes/MainMenu.unity
     guid: 4c1c7c6be3405eb40b0666dbe8c1cf53
   - enabled: 1
-    path: Assets/Junsang/Scenes/Test.unity
-    guid: 54246934f39c00849bb055e6aa7908e8
+    path: Assets/JWS/Scene/JWS.unity
+    guid: ad5c205bfd92b6e47875597cf68ec680
   m_configObjects: {}
