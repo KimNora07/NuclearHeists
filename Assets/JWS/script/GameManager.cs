@@ -25,10 +25,7 @@ public class GameManager : MonoBehaviour
     public bool KeyCard_Green = false;
     public bool KeyCard_Yellow = false;
 
-    public Image R_KEY;
-    public Image B_KEY;
-    public Image G_KEY;
-    public Image Y_KEY;
+    public GameObject[] Keys;
 
     private void Update()
     {
@@ -44,27 +41,30 @@ public class GameManager : MonoBehaviour
     public void KeyCardRed()
     {
         KeyCard_Red = true;
-        R_KEY.enabled = true;
-        Debug.Log("빨간키카드 찾음");
+        Keys[0].SetActive(true);
+
     }
 
     public void KeyCardBlue()
     {
         KeyCard_Blue = true;
-        B_KEY.enabled = true;
+        Keys[1].SetActive(true);
+
     }
 
     public void KeyCardGreen()
     {
         KeyCard_Green = true;
-        G_KEY.enabled = true;
+        Keys[2].SetActive(true);
+
 
     }
 
     public void KeyCardYellow()
     {
         KeyCard_Yellow = true;
-        Y_KEY.enabled = true;
+        Keys[3].SetActive(true);
+
     }
 
 }
