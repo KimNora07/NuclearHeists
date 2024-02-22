@@ -8,10 +8,10 @@ public class Box : MonoBehaviour
 
     public float SherchTime;
     public float FindTime = 2;
-    public bool Find = false;
-    public bool Once = false;
-    public bool OnCol = false;
-    public bool IsOpen = false;
+    private bool Find = false;
+    private bool Once = false;
+    private bool OnCol = false;
+    private bool IsOpen = false;
 
 
     public Collider2D col;
@@ -22,10 +22,7 @@ public class Box : MonoBehaviour
 
     public string ContainItem;
 
-    void Start()
-    {
-        //col = GetComponent<Collider2D>();
-    }
+
 
     // Update is called once per frame
     void Update()
@@ -36,7 +33,7 @@ public class Box : MonoBehaviour
             SherchTime += Time.deltaTime;
             if (SherchTime >= FindTime)
             {
-                
+
                 Once = true;
                 IsOpen = true;
                 Key.SetActive(false);
@@ -44,7 +41,7 @@ public class Box : MonoBehaviour
                 anim.SetBool("Open", true);
             }
         }
-        else if(Input.GetKeyDown(KeyCode.E) && IsOpen == true && Find == false)
+        else if (Input.GetKeyDown(KeyCode.E) && IsOpen == true && Find == false && OnCol == true)
         {
             switch (ContainItem)
             {
@@ -53,7 +50,7 @@ public class Box : MonoBehaviour
                         GameManager.Instance.KeyCardRed();
                         Find = true;
                         col.enabled = false;
-                        Debug.Log("빨간키카드 찾음");
+
                         break;
                     }
                 case "BlueKeyCard":

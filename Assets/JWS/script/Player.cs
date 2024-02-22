@@ -10,10 +10,6 @@ public class Player : MonoBehaviour
     private Vector2 movedir;
     private Vector2 lastmovedir;
 
-    void Start()
-    {
-
-    }
 
     void Update()
     {

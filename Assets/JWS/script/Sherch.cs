@@ -8,26 +8,63 @@ public class Sherch : MonoBehaviour
     public float FindTime = 2;
     public bool Find = false;
     public bool Once = false;
-    public bool OnCol = false;
+    private bool OnCol = false;
+    public string ContainItem;
     public Collider2D col;
     public GameObject Key;
 
-    void Start()
-    {
-        //col = GetComponent<Collider2D>();
-    }
+
     void Update()
     {
-
         if (Input.GetKey(KeyCode.E) && Once == false && OnCol == true)
         {
             SherchTime += Time.deltaTime;
             if (SherchTime >= FindTime)
             {
-                Find = true;
-                Once = true;
-                col.enabled = false;
-                Debug.Log("Ã£À½");
+                switch (ContainItem)
+                {
+                    case "RedKeyCard":
+                        {
+                            GameManager.Instance.KeyCardRed();
+                            Find = true;
+                            col.enabled = false;
+                            break;
+                        }
+                    case "BlueKeyCard":
+                        {
+                            GameManager.Instance.KeyCardBlue();
+                            Find = true;
+                            col.enabled = false;
+                            break;
+                        }
+                    case "GreenKeyCard":
+                        {
+                            GameManager.Instance.KeyCardGreen();
+                            Find = true;
+                            col.enabled = false;
+                            break;
+                        }
+                    case "YellowKeyCard":
+                        {
+                            GameManager.Instance.KeyCardYellow();
+                            Find = true;
+                            col.enabled = false;
+                            break;
+                        }
+                    case "Key":
+                        {
+                            break;
+                        }
+                    case "File":
+                        {
+                            break;
+                        }
+                    case "PC":
+                        {
+                            break;
+                        }
+
+                }
             }
         }
         else
@@ -43,8 +80,6 @@ public class Sherch : MonoBehaviour
             Key.SetActive(true);
             OnCol = true;
         }
-
-
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -53,3 +88,4 @@ public class Sherch : MonoBehaviour
         OnCol = false;
     }
 }
+

@@ -12,13 +12,14 @@ public class AI : MonoBehaviour
     int currentPointIndex;
     Vector2 dir;
     private Vector2 Lastdir;
-    public bool once;
+    private bool once;
 
 
     public GameObject player;
-    public bool IsFind = false;
-    bool chase = false;
-    public float time;
+    private bool IsFind = false;
+    private bool gameOver = false;
+    //public float time;
+    //public float chaseTime;
     bool OnAngle = false;
     
     public GameObject AnglePos;
@@ -26,7 +27,7 @@ public class AI : MonoBehaviour
     public GameObject Mark1;
     public GameObject Mark2;
 
-    public float chaseTime;
+    
 
 
     void Start()
@@ -54,14 +55,15 @@ public class AI : MonoBehaviour
         Anim();
         MakeDirToPlayer();
 
-        if(chase == true)
+        if(gameOver == true)
         {
-            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
-            MakeRay();
+            //transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+            //MakeRay();
+            GameManager.Instance.GameOver();
             Mark1.SetActive(true);
             Mark2.SetActive(false);
         }
-        if(chase == false)
+        if(gameOver == false)
         {
             
             MakeDir();
@@ -138,13 +140,22 @@ public class AI : MonoBehaviour
             if (IsFind)
             {
                 Debug.DrawRay(transform.position, player.transform.position - transform.position, Color.green);
-                time += Time.deltaTime;
+                if(gameOver == false)
+                {
+                    GameManager.Instance.time += Time.deltaTime;
+                }
+                else
+                {
+                    GameManager.Instance.time = 0;
+                }
+                    
+                
                 Mark1.SetActive(false);
                 Mark2.SetActive(true);
-                if (time >= chaseTime && chase == false)
+                if (GameManager.Instance.time >= GameManager.Instance.chaseTime && gameOver == false)
                 {
-                    time = 0;
-                    chase = true;
+                    GameManager.Instance.time = GameManager.Instance.chaseTime;
+                    gameOver = true;
                     Mark1.SetActive(true);
                     Mark2.SetActive(false);
                 }
@@ -154,8 +165,8 @@ public class AI : MonoBehaviour
             else
             {
                 Debug.DrawRay(transform.position, player.transform.position - transform.position, Color.red);
-                chase = false;
-                time = 0;
+                gameOver = false;
+                GameManager.Instance.time = 0;
                 OnAngle = false;
                 Mark1.SetActive(false);
                 Mark2.SetActive(false);
@@ -228,6 +239,13 @@ public class AI : MonoBehaviour
         {
             OnAngle = false;
             Mark1.SetActive(false);
+            GameManager.Instance.time = 0;
         }
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        Mark1.SetActive(true);
+        Mark2.SetActive(false);
+        GameManager.Instance.GameOver();
     }
 }

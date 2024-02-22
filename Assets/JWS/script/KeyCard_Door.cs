@@ -7,7 +7,7 @@ public class KeyCard_Door : MonoBehaviour
     public static KeyCard_Door Instance { get; private set; }
 
     public GameObject Key;
-    public bool OnCol;
+    private bool OnCol;
     public Animator anim;
     public Collider2D col;
     public Collider2D col2;
@@ -32,8 +32,11 @@ public class KeyCard_Door : MonoBehaviour
                 {
                     if (Input.GetKeyDown(KeyCode.E) && OnCol == true && GameManager.Instance.KeyCard_Red == true)
                     {
+                        AudioManager.Instance.PlaySFX("ConfirmClick");
+                        col2.enabled = false;
                         anim.SetTrigger("Open");
                         IsOpen = true;
+                        GameManager.Instance.R_KEY.enabled = true;
                     }
                     break;
                 }
@@ -41,9 +44,11 @@ public class KeyCard_Door : MonoBehaviour
                 {
                     if (Input.GetKeyDown(KeyCode.E) && OnCol == true && GameManager.Instance.KeyCard_Blue == true)
                     {
+                        AudioManager.Instance.PlaySFX("ConfirmClick");
+                        col2.enabled = false;
                         anim.SetTrigger("Open");
                         IsOpen = true;
-
+                        GameManager.Instance.B_KEY.enabled = true;
                     }
                     break;
                 }
@@ -51,8 +56,11 @@ public class KeyCard_Door : MonoBehaviour
                 {
                     if (Input.GetKeyDown(KeyCode.E) && OnCol == true && GameManager.Instance.KeyCard_Green == true)
                     {
+                        AudioManager.Instance.PlaySFX("ConfirmClick");
+                        col2.enabled = false;
                         anim.SetTrigger("Open");
                         IsOpen = true;
+                        GameManager.Instance.G_KEY.enabled = true;
 
                     }
                     break;
@@ -61,8 +69,11 @@ public class KeyCard_Door : MonoBehaviour
                 {
                     if (Input.GetKeyDown(KeyCode.E) && OnCol == true && GameManager.Instance.KeyCard_Yellow == true)
                     {
+                        AudioManager.Instance.PlaySFX("ConfirmClick");
+                        col2.enabled = false;
                         anim.SetTrigger("Open");
                         IsOpen = true;
+                        GameManager.Instance.Y_KEY.enabled = true;
 
                     }
                     break;
@@ -73,6 +84,7 @@ public class KeyCard_Door : MonoBehaviour
     void open()
     {
         col.enabled = false;
+        
         Debug.Log("¿­¸²");
     }
 

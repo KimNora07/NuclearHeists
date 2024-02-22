@@ -15,6 +15,7 @@ public class KeyCard : MonoBehaviour
     {
         if (Door.IsOpen == true)
         {
+            
             Renderer.sprite = KeyCardCo;
         }
     }

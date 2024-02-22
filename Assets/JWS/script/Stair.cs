@@ -13,10 +13,7 @@ public class Stair : MonoBehaviour
 
     public GameObject Key;
 
-    private void Start()
-    {
-        //col = GetComponent<Collider2D>();
-    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && OnCol == true)
