@@ -51,5 +51,4 @@ public class Player : MonoBehaviour
         anim.SetFloat("lastMX", lastmovedir.x);
         anim.SetFloat("lastMY", lastmovedir.y);
     }
-
 }
