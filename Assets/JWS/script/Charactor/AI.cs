@@ -8,8 +8,8 @@ public class AI : MonoBehaviour
     public Rigidbody2D rb;
     public float speed;
     public Transform[] point;
-    public float waitTime;
-    int currentPointIndex;
+    private float waitTime;
+    private int currentPointIndex;
     Vector2 dir;
     private Vector2 Lastdir;
     private bool once;

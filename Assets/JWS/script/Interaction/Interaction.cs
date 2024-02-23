@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sherch : MonoBehaviour
+public class Interaction : MonoBehaviour
 {
     public float SherchTime;
     public float FindTime = 2;

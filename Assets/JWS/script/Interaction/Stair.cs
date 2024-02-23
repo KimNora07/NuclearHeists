@@ -9,7 +9,7 @@ public class Stair : MonoBehaviour
 
     public float x;
     public float y;
-    public bool OnCol = false;
+    private bool OnCol = false;
 
     public GameObject Key;
 
