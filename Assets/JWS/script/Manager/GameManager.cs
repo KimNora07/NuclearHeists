@@ -28,11 +28,8 @@ public class GameManager : MonoBehaviour
     public int Index = -1;
 
     public GameObject[] Keys;
-    public RectTransform KeysPosR;
-    public RectTransform KeysPosB;
-    public RectTransform KeysPosG;
-    public RectTransform KeysPosY;
-    public RectTransform KeysPosKey;
+
+    public RectTransform[] KeysPos;
 
     private void Update()
     {
@@ -51,16 +48,13 @@ public class GameManager : MonoBehaviour
         KeyCard_Red = true;
         Keys[0].SetActive(true);
         Index += 1;
-        MoveX = KeysPosR.anchoredPosition.x;
+        MoveX = KeysPos[0].anchoredPosition.x;
         if (MoveX == 0)
         {
             MoveX = 822;
         }
         MoveX -= 122 * Index;
-        KeysPosR.anchoredPosition = new Vector2(MoveX, KeysPosR.anchoredPosition.y);
-
-
-
+        KeysPos[0].anchoredPosition = new Vector2(MoveX, KeysPos[0].anchoredPosition.y);
     }
 
     public void KeyCardBlue()
@@ -69,14 +63,13 @@ public class GameManager : MonoBehaviour
         KeyCard_Blue = true;
         Keys[1].SetActive(true);
         Index += 1;
-        MoveX = KeysPosB.anchoredPosition.x;
+        MoveX = KeysPos[1].anchoredPosition.x;
         if (MoveX == 0)
         {
             MoveX = 822;
         }
         MoveX -= 122 * Index;
-        KeysPosB.anchoredPosition = new Vector2(MoveX, KeysPosB.anchoredPosition.y);
-
+        KeysPos[1].anchoredPosition = new Vector2(MoveX, KeysPos[1].anchoredPosition.y);
     }
 
     public void KeyCardGreen()
@@ -86,15 +79,13 @@ public class GameManager : MonoBehaviour
         KeyCard_Green = true;
         Keys[2].SetActive(true);
         Index += 1;
-        MoveX = KeysPosG.anchoredPosition.x;
+        MoveX = KeysPos[2].anchoredPosition.x;
         if (MoveX == 0)
         {
             MoveX = 822;
         }
         MoveX -= 122 * Index;
-        KeysPosG.anchoredPosition = new Vector2(MoveX, KeysPosG.anchoredPosition.y);
-
-
+        KeysPos[2].anchoredPosition = new Vector2(MoveX, KeysPos[2].anchoredPosition.y);
     }
 
     public void KeyCardYellow()
@@ -105,14 +96,20 @@ public class GameManager : MonoBehaviour
         Keys[3].SetActive(true);
         Index += 1;
 
-        MoveX = KeysPosY.anchoredPosition.x;
+        MoveX = KeysPos[3].anchoredPosition.x;
         if (MoveX == 0)
         {
             MoveX = 822;
         }
         MoveX -= 122 * Index;
-        KeysPosY.anchoredPosition = new Vector2(MoveX, KeysPosY.anchoredPosition.y);
+        KeysPos[3].anchoredPosition = new Vector2(MoveX, KeysPos[3].anchoredPosition.y);
+    }
 
+    public void UseKeyCard(int num)
+    {
+        Index -= 1;
+        Keys[num].SetActive(false);
+        KeysPos[num].anchoredPosition = new Vector2(822, KeysPos[num].anchoredPosition.y);
     }
 
 

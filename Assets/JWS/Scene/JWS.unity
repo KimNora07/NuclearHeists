@@ -6194,11 +6194,12 @@ MonoBehaviour:
   - {fileID: 1571454024}
   - {fileID: 1559809199}
   - {fileID: 269398683}
-  KeysPosR: {fileID: 793444750}
-  KeysPosB: {fileID: 1244985403}
-  KeysPosG: {fileID: 1571454025}
-  KeysPosY: {fileID: 1559809200}
-  KeysPosKey: {fileID: 269398684}
+  KeysPos:
+  - {fileID: 793444750}
+  - {fileID: 1244985403}
+  - {fileID: 1571454025}
+  - {fileID: 1559809200}
+  - {fileID: 269398684}
 --- !u!4 &1151725698
 Transform:
   m_ObjectHideFlags: 0
