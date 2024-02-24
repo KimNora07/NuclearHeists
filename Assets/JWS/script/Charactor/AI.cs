@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class AI : MonoBehaviour
 {
+    private bool SteelOnce = false;
+    public float radius;
+    public LayerMask Layer;
     Animator anim;
     public Rigidbody2D rb;
     public float speed;
@@ -26,6 +29,7 @@ public class AI : MonoBehaviour
 
     public GameObject Mark1;
     public GameObject Mark2;
+    public GameObject Key;
 
     
 
@@ -36,8 +40,9 @@ public class AI : MonoBehaviour
     }
 
     private void FixedUpdate()
-    { 
-        if(OnAngle == true)
+    {
+
+        if (OnAngle == true)
         {
             MakeRay();
         }
@@ -50,8 +55,8 @@ public class AI : MonoBehaviour
 
     void Update()
     {
+        SteelAtea();
         CheckAngle();
-        
         Anim();
         MakeDirToPlayer();
 
@@ -247,5 +252,42 @@ public class AI : MonoBehaviour
         Mark1.SetActive(true);
         Mark2.SetActive(false);
         GameManager.Instance.GameOver();
+    }
+
+    void SteelAtea()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius, Layer);
+
+        if(colliders != null && colliders.Length > 0)
+        {
+            foreach (Collider2D col in colliders)
+            {
+                Debug.Log("영역안");
+                GameManager.Instance.OnSteelArea = true;
+
+
+                if (Input.GetKeyDown(KeyCode.E) && SteelOnce == false)
+                {
+                    GameManager.Instance.OnSteelArea = false;
+                    SteelOnce = true;
+                    GameManager.Instance.KeyCardRed();
+                    Key.SetActive(false);
+                    Debug.Log("훔침");
+                }
+            }
+        }
+        else
+        {
+            GameManager.Instance.OnSteelArea = false;
+            Debug.Log("영역밖");
+        }
+
+
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere(transform.position, radius);
     }
 }

@@ -9,17 +9,26 @@ public class Player : MonoBehaviour
     public Animator anim;
     private Vector2 movedir;
     private Vector2 lastmovedir;
+    public GameObject E_KEY;
 
 
     void Update()
     {
+        if(GameManager.Instance.OnSteelArea == true)
+        {
+            E_KEY.SetActive(true);
+            Debug.Log("»ý¼º");
+        }
+        else
+        {
+            E_KEY.SetActive(false);
+        }
         MakeDir();
         Anim();
     }
 
     private void FixedUpdate()
     {
-        
         Move();
     }
 

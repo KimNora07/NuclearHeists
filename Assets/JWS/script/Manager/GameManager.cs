@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     }
 
 
+    public bool OnSteelArea = false;
+
     public float time;
     public float chaseTime;
 
