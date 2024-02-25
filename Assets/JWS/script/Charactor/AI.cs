@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AI : MonoBehaviour
 {
+    public bool OnSteelArea = false;
     private bool SteelOnce = false;
     public float radius;
     public LayerMask Layer;
@@ -263,12 +264,12 @@ public class AI : MonoBehaviour
             foreach (Collider2D col in colliders)
             {
                 Debug.Log("¿µ¿ª¾È");
-                GameManager.Instance.OnSteelArea = true;
+                OnSteelArea = true;
 
 
                 if (Input.GetKeyDown(KeyCode.E) && SteelOnce == false)
                 {
-                    GameManager.Instance.OnSteelArea = false;
+                    OnSteelArea = false;
                     SteelOnce = true;
                     GameManager.Instance.KeyCardRed();
                     Key.SetActive(false);

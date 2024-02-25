@@ -11,10 +11,11 @@ public class Player : MonoBehaviour
     private Vector2 lastmovedir;
     public GameObject E_KEY;
 
+    public AI ai;
 
     void Update()
     {
-        if(GameManager.Instance.OnSteelArea == true)
+        if(ai.OnSteelArea == true)
         {
             E_KEY.SetActive(true);
             Debug.Log("»ý¼º");
