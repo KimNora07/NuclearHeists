@@ -33,9 +33,20 @@ public class GameManager : MonoBehaviour
 
     public RectTransform[] KeysPos;
 
+    public GameObject SteelUI;
+
     private void Update()
     {
         findSlider.value = (float)time / (float)chaseTime;
+
+        if(OnSteelArea == false)
+        {
+            SteelUI.SetActive(false);
+        }
+        else
+        {
+            SteelUI.SetActive(true);
+        }
     }
 
 

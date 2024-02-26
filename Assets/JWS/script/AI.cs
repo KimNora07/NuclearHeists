@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class AI : MonoBehaviour
 {
-    public bool OnSteelArea = false;
-    private bool SteelOnce = false;
+    public bool HaveKeyCard;
+    public string AI_Type;
     public float radius;
     public LayerMask Layer;
     Animator anim;
@@ -19,20 +19,22 @@ public class AI : MonoBehaviour
     private bool once;
 
 
-    public GameObject player;
+    private bool OnSteelArea = false;
+    private bool SteelOnce = false;
     private bool IsFind = false;
     private bool gameOver = false;
-    //public float time;
-    //public float chaseTime;
-    bool OnAngle = false;
+    private bool OnAngle = false;
     
     public GameObject AnglePos;
-
     public GameObject Mark1;
     public GameObject Mark2;
-    public GameObject Key;
+    public GameObject RKey;
+    public GameObject BKey;
+    public GameObject GKey;
+    public GameObject YKey;
+    public GameObject Steelkey;
+    public GameObject player;
 
-    
 
 
     void Start()
@@ -56,10 +58,13 @@ public class AI : MonoBehaviour
 
     void Update()
     {
-        SteelAtea();
+        if (HaveKeyCard)
+        {
+            SteelAtea();
+        }
         CheckAngle();
         Anim();
-        MakeDirToPlayer();
+        //MakeDirToPlayer();
 
         if(gameOver == true)
         {
@@ -123,11 +128,11 @@ public class AI : MonoBehaviour
 
     }
 
-    void MakeDirToPlayer()
-    {
-        dir = ((Vector2)player.transform.position - (Vector2)transform.position).normalized;
+    //void MakeDirToPlayer()
+    //{
+    //    dir = ((Vector2)player.transform.position - (Vector2)transform.position).normalized;
 
-    }
+    //}
 
     void Anim()
     {
@@ -248,38 +253,72 @@ public class AI : MonoBehaviour
             GameManager.Instance.time = 0;
         }
     }
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         Mark1.SetActive(true);
         Mark2.SetActive(false);
         GameManager.Instance.GameOver();
     }
 
+
     void SteelAtea()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius, Layer);
 
-        if(colliders != null && colliders.Length > 0)
+        if (colliders != null && colliders.Length > 0 && SteelOnce == false)
         {
             foreach (Collider2D col in colliders)
             {
-                Debug.Log("영역안");
-                OnSteelArea = true;
-
-
-                if (Input.GetKeyDown(KeyCode.E) && SteelOnce == false)
+                if (!SteelOnce)
                 {
-                    OnSteelArea = false;
-                    SteelOnce = true;
-                    GameManager.Instance.KeyCardRed();
-                    Key.SetActive(false);
-                    Debug.Log("훔침");
+                    Steelkey.SetActive(true);
+                    Debug.Log("영역안");
+                    OnSteelArea = true;
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        OnSteelArea = false;
+                        SteelOnce = true;
+                        switch (AI_Type)
+                        {
+                            case "R":
+                                {
+                                    GameManager.Instance.KeyCardRed();
+                                    RKey.SetActive(false);
+                                    break;
+                                }
+                            case "B":
+                                {
+                                    GameManager.Instance.KeyCardBlue();
+                                    BKey.SetActive(false);
+                                    break;
+                                }
+                            case "G":
+                                {
+                                    GameManager.Instance.KeyCardGreen();
+                                    GKey.SetActive(false);
+                                    break;
+                                }
+                            case "Y":
+                                {
+                                    GameManager.Instance.KeyCardYellow();
+                                    YKey.SetActive(false);
+                                    break;
+                                }
+                        }
+
+                        
+                        Steelkey.SetActive(false);
+
+                        Debug.Log("훔침");
+                    }
                 }
+
             }
         }
         else
         {
-            GameManager.Instance.OnSteelArea = false;
+            Steelkey.SetActive(false);
+            OnSteelArea = false;
             Debug.Log("영역밖");
         }
 

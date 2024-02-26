@@ -15,15 +15,6 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if(ai.OnSteelArea == true)
-        {
-            E_KEY.SetActive(true);
-            Debug.Log("»ý¼º");
-        }
-        else
-        {
-            E_KEY.SetActive(false);
-        }
         MakeDir();
         Anim();
     }
