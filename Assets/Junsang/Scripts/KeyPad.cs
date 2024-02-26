@@ -8,10 +8,12 @@ public class KeyPad : MonoBehaviour
     [SerializeField] Button cancelButton;
     [SerializeField] Button enterButton;
     [SerializeField] private string code = "0192";
+    [SerializeField] private Text codeText;
     private string Nr;
 
     private void Start()
     {
+        codeText.text = "";
         cancelButton.onClick.AddListener(CancleFunc);
         enterButton.onClick.AddListener(EnterFunc);
     }
@@ -20,6 +22,7 @@ public class KeyPad : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX("KeyPadClick");
         Nr = Nr + _number;
+        codeText.text = Nr;
     }
 
     public void EnterFunc()
@@ -40,6 +43,7 @@ public class KeyPad : MonoBehaviour
     public void CancleFunc()
     {
         Nr = null;
+        codeText.text = Nr;
         Debug.Log($"√ ±‚»≠: {Nr}");
         AudioManager.Instance.PlaySFX("KeyPadClick");
     }
