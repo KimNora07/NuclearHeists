@@ -19,7 +19,7 @@ public class AI : MonoBehaviour
     private bool once;
 
 
-    private bool OnSteelArea = false;
+    public bool OnSteelArea = false;
     private bool SteelOnce = false;
     private bool IsFind = false;
     private bool gameOver = false;
@@ -272,7 +272,6 @@ public class AI : MonoBehaviour
                 if (!SteelOnce)
                 {
                     Steelkey.SetActive(true);
-                    Debug.Log("영역안");
                     OnSteelArea = true;
                     if (Input.GetKeyDown(KeyCode.E))
                     {
@@ -308,8 +307,6 @@ public class AI : MonoBehaviour
 
                         
                         Steelkey.SetActive(false);
-
-                        Debug.Log("훔침");
                     }
                 }
 
@@ -319,7 +316,6 @@ public class AI : MonoBehaviour
         {
             Steelkey.SetActive(false);
             OnSteelArea = false;
-            Debug.Log("영역밖");
         }
 
 
