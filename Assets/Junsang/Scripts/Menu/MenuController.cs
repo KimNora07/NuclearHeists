@@ -88,6 +88,7 @@ public class MenuController : MonoBehaviour
 
     private void Start()
     {
+        LoadVolumes();
         musicSlider.value = musicVolume;
         sfxSlider.value = sfxVolume;
 
@@ -351,5 +352,28 @@ public class MenuController : MonoBehaviour
             Tween tween = saveTxt[textCount].DOFade(0f, 0.25f);
             yield return tween.WaitForCompletion();
         }
+    }
+
+    private void SaveVolumes()
+    {
+        PlayerPrefs.SetFloat("MusicVolume", musicVolume);
+        PlayerPrefs.SetFloat("SFXVolume", sfxVolume);
+
+        PlayerPrefs.Save();
+    }
+
+    private void LoadVolumes()
+    {
+
+        if (PlayerPrefs.HasKey("MusicVolume"))
+            musicVolume = PlayerPrefs.GetFloat("MusicVolume");
+
+        if (PlayerPrefs.HasKey("SFXVolume"))
+            sfxVolume = PlayerPrefs.GetFloat("SFXVolume");
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveVolumes();
     }
 }
