@@ -12,11 +12,14 @@ public class Box : MonoBehaviour
     private bool Once = false;
     private bool OnCol = false;
     private bool IsOpen = false;
+    public bool IsNull;
 
 
     public Collider2D col;
     public GameObject Key;
     public GameObject Key2;
+
+
 
     public Animator anim;
 
@@ -33,15 +36,15 @@ public class Box : MonoBehaviour
             SherchTime += Time.deltaTime;
             if (SherchTime >= FindTime)
             {
-
                 Once = true;
                 IsOpen = true;
                 Key.SetActive(false);
                 Key2.SetActive(true);
+
                 anim.SetBool("Open", true);
             }
         }
-        else if (Input.GetKeyDown(KeyCode.E) && IsOpen == true && Find == false && OnCol == true)
+        else if (Input.GetKeyDown(KeyCode.E) && IsOpen == true && Find == false && OnCol == true && IsNull == false)
         {
             switch (ContainItem)
             {
@@ -70,6 +73,13 @@ public class Box : MonoBehaviour
                 case "YellowKeyCard":
                     {
                         GameManager.Instance.KeyCardYellow();
+                        Find = true;
+                        col.enabled = false;
+                        break;
+                    }
+                case "Paper":
+                    {
+                        GameManager.Instance.Paper();
                         Find = true;
                         col.enabled = false;
                         break;

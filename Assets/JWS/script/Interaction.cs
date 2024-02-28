@@ -51,19 +51,13 @@ public class Interaction : MonoBehaviour
                             col.enabled = false;
                             break;
                         }
-                    case "Key":
+                    case "Nuke":
                         {
+                            GameManager.Instance.Claer();
+                            Find = true;
+                            col.enabled = false;
                             break;
                         }
-                    case "File":
-                        {
-                            break;
-                        }
-                    case "PC":
-                        {
-                            break;
-                        }
-
                 }
             }
         }

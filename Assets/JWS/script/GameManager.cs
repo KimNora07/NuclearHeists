@@ -19,7 +19,6 @@ public class GameManager : MonoBehaviour
     public float chaseTime;
 
 
-
     public Slider findSlider;
 
     public bool KeyCard_Red = false;
@@ -35,8 +34,11 @@ public class GameManager : MonoBehaviour
 
     public GameObject SteelUI;
 
+    public GameObject paper;
+
     private void Update()
     {
+
         findSlider.value = (float)time / (float)chaseTime;
 
         if(OnSteelArea == false)
@@ -47,12 +49,18 @@ public class GameManager : MonoBehaviour
         {
             SteelUI.SetActive(true);
         }
+
     }
 
 
     public void GameOver()
     {
         Time.timeScale = 0f;
+    }
+
+    public void Claer()
+    {
+        Debug.Log("Å¬¸®¾î");
     }
 
     public void KeyCardRed()
@@ -125,5 +133,8 @@ public class GameManager : MonoBehaviour
         KeysPos[num].anchoredPosition = new Vector2(822, KeysPos[num].anchoredPosition.y);
     }
 
-
+    public void Paper()
+    {
+        paper.SetActive(true);
+    }
 }
