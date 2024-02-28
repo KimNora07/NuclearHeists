@@ -91,7 +91,6 @@ public class KeyCard_Door : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
 
-            Key.SetActive(true);
             OnCol = true;
 
         }
@@ -99,7 +98,6 @@ public class KeyCard_Door : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Key.SetActive(false);
         OnCol = false;
     }
 }

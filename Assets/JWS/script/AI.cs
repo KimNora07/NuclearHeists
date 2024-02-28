@@ -12,7 +12,7 @@ public class AI : MonoBehaviour
     public Rigidbody2D rb;
     public float speed;
     public Transform[] point;
-    private float waitTime;
+    public float waitTime;
     private int currentPointIndex;
     Vector2 dir;
     private Vector2 Lastdir;
