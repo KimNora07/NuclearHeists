@@ -42,15 +42,22 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        musicSlider.value = AudioSlider.instance.musicVolume;
+        sfxSlider.value = AudioSlider.instance.sfxVolume;
+        Init();
+    }
+
     public void SetMusicVolume(float value)
     {
-        MenuController.Instance.musicVolume = value;
+        AudioSlider.instance.musicVolume = value;
         mixer.SetFloat(MIXER_MUSIC, Mathf.Log10(value) * 20);
     }
 
     public void SetSFXVolume(float value)
     {
-        MenuController.Instance.sfxVolume = value;
+        AudioSlider.instance.sfxVolume = value;
         mixer.SetFloat(MIXER_SFX, Mathf.Log10(value) * 20); 
     }
 
@@ -83,5 +90,9 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-
+    void Init()
+    {
+        musicSlider.onValueChanged.AddListener(SetMusicVolume);  // 슬라이더의 값이 변경 되었을 때 해당 함수를 호출한다
+        sfxSlider.onValueChanged.AddListener(SetSFXVolume);  // 슬라이더의 값이 변경 되었을 때 해당 함수를 호출한다
+    }
 }

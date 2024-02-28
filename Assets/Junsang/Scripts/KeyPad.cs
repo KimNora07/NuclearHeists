@@ -7,9 +7,11 @@ public class KeyPad : MonoBehaviour
 {
     [SerializeField] Button cancelButton;
     [SerializeField] Button enterButton;
-    [SerializeField] private string code = "0192";
+    public string code;
     [SerializeField] private Text codeText;
     private string Nr;
+
+    public Door door;
 
     private void Start()
     {
@@ -29,7 +31,7 @@ public class KeyPad : MonoBehaviour
     {
         if(Nr == code)
         {
-            Door.Instance.IsCo = true;
+            door.IsCo = true;
             Debug.Log("일치합니다");
             AudioManager.Instance.PlaySFX("ConfirmClick");
         }

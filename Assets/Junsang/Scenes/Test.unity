@@ -623,7 +623,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &249057388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -726,7 +726,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &274014630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5849,6 +5849,7 @@ MonoBehaviour:
   enterButton: {fileID: 957053381}
   code: 0192
   codeText: {fileID: 0}
+  door: {fileID: 0}
 --- !u!1 &1737925807
 GameObject:
   m_ObjectHideFlags: 0

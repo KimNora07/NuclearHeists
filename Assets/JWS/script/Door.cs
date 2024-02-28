@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    public static Door Instance { get; private set; }
+    public static Door Instance;
 
     public GameObject Key;
     public bool OnCol;
