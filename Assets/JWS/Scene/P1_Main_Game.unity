@@ -5537,7 +5537,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cancelButton: {fileID: 1533753193}
   enterButton: {fileID: 1569891723}
-  code: 0192
+  code: 2556
   codeText: {fileID: 1180271687}
   door: {fileID: 5974147415582974249}
 --- !u!114 &547858511
@@ -16647,7 +16647,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cancelButton: {fileID: 395891701}
   enterButton: {fileID: 1019312829}
-  code: 8401
+  code: 6875
   codeText: {fileID: 1122932643}
   door: {fileID: 1360333153}
 --- !u!1 &1148694425
@@ -21014,7 +21014,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cancelButton: {fileID: 1125459234}
   enterButton: {fileID: 607280375}
-  code: 6257
+  code: 6558
   codeText: {fileID: 1114866360}
   door: {fileID: 2068041036}
 --- !u!1 &1714710890
@@ -28159,7 +28159,7 @@ Transform:
   m_GameObject: {fileID: 3614762083175552165}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.2, y: 28, z: 0}
+  m_LocalPosition: {x: 0.02, y: -0.04, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 1
   m_Children:

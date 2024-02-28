@@ -39,6 +39,12 @@ public class Door : MonoBehaviour
             }
         }
 
+        if(Input.GetKeyDown(KeyCode.Escape) && OnCol == true)
+        {
+            Time.timeScale = 1f;
+            keyPad.SetActive(false);
+        }
+
         if(OnCol && IsCo)
         {
             Time.timeScale = 1f;
