@@ -81,18 +81,12 @@ public class KeyCard_Door : MonoBehaviour
         }
 
     }
-    void open()
-    {
-        col.enabled = false;
-    }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-
             OnCol = true;
-
         }
     }
 

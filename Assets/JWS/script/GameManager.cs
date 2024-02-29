@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour
     public float time;
     public float chaseTime;
 
-
     public Slider findSlider;
 
     public bool KeyCard_Red = false;
@@ -35,6 +34,12 @@ public class GameManager : MonoBehaviour
     public GameObject SteelUI;
 
     public GameObject paper;
+    public GameObject restartPanel;
+
+    private void Start()
+    {
+        restartPanel.SetActive(false);
+    }
 
     private void Update()
     {
@@ -55,7 +60,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        Time.timeScale = 0f;
+        restartPanel.SetActive(true);
     }
 
     public void Claer()

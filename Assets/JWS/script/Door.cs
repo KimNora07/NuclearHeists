@@ -20,14 +20,13 @@ public class Door : MonoBehaviour
     {
         Instance = this;
     }
-    // Start is called before the first frame update
+
     void Start()
     {
         IsCo = false;
         keyPad.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && OnCol == true)
@@ -56,22 +55,14 @@ public class Door : MonoBehaviour
         }
         
     }
-    void open()
-    {
-        col.enabled = false;
-    }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-
-                Key.SetActive(true);
-                OnCol = true;
-
+            Key.SetActive(true);
+            OnCol = true;
         }
-
-
     }
 
     private void OnTriggerExit2D(Collider2D collision)

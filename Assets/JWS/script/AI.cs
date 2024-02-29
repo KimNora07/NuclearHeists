@@ -22,7 +22,7 @@ public class AI : MonoBehaviour
     public bool OnSteelArea = false;
     private bool SteelOnce = false;
     private bool IsFind = false;
-    private bool gameOver = false;
+    public bool gameOver = false;
     private bool OnAngle = false;
     
     public GameObject AnglePos;
@@ -39,6 +39,7 @@ public class AI : MonoBehaviour
 
     void Start()
     {
+        gameOver = false;
         anim = GetComponent<Animator>();
     }
 

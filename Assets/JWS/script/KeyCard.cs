@@ -5,17 +5,18 @@ using UnityEngine;
 public class KeyCard : MonoBehaviour
 {
     public KeyCard_Door Door;
-    public SpriteRenderer Renderer;
+    private SpriteRenderer Renderer;
     public Sprite KeyCardCo;
-    // Start is called before the first frame update
 
+    private void Start()
+    {
+        Renderer = GetComponent<SpriteRenderer>();
+    }
 
-    // Update is called once per frame
     void Update()
     {
         if (Door.IsOpen == true)
         {
-            
             Renderer.sprite = KeyCardCo;
         }
     }

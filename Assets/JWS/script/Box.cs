@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Box : MonoBehaviour
 {
-
-
     public float SherchTime;
     public float FindTime = 2;
     private bool Find = false;
@@ -14,23 +12,17 @@ public class Box : MonoBehaviour
     private bool IsOpen = false;
     public bool IsNull;
 
-
     public Collider2D col;
     public GameObject Key;
     public GameObject Key2;
-
-
 
     public Animator anim;
 
     public string ContainItem;
 
-
-
     // Update is called once per frame
     void Update()
     {
-
         if (Input.GetKey(KeyCode.E) && Once == false && OnCol == true && IsOpen == false)
         {
             SherchTime += Time.deltaTime;
